@@ -46,13 +46,13 @@ const legendAxis = Legend.append("g")
                          .attr("transform", "translate(" + 0 + "," + viewHeight0 + ")")
                          .call(legendCall);
 const height = 650;
-const width = 1200;
+const width = 1000;
 
 let svg = d3.select("#svg")
             .attr("height", height)
             .attr("width", width);
 
-const margin1 = {top: -5, right: 0, bottom: 0, left: 150}; 
+const margin1 = {top: -5, right: 0, bottom: 0, left: 25}; 
 svg = svg.append("g")
                .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
@@ -70,7 +70,7 @@ svg.append("a")
    .attr("target", "_blank")
    .append("text")
    .attr("id", "sourceText0")
-   .attr("x", 660)
+   .attr("x", 500)
    .attr("y", 620)
    .style("text-decoration", "underline")
    .text("Source: USDA Economic Research Service");
@@ -98,14 +98,17 @@ d3.json(educationData).then(function(eduData) {
        }) 
        .attr("d", path)
        .style("fill", function(d) {
-         if (educationFunc(d) < 3) {
-          return "white";
-         } 
+         if (educationFunc(d) <= 3) {
+           return "white";
+         }
+         if (educationFunc(d) >= 66) {
+           return "#00331a";
+         }
          for (let j = 0; j < mapVisuals.length; j++) {
           if (educationFunc(d) < (mapVisuals[j].number * 100)) {
             return mapVisuals[j - 1].color;
           }
-        } 
+         }
        })
        .on("mouseover", function(d) {
          for (let i = 0; i < eduData.length; i++) {
@@ -129,5 +132,3 @@ d3.json(educationData).then(function(eduData) {
 }).catch(function(err0) {
   alert("Data failed to load, please try again.")
 });
-
-
