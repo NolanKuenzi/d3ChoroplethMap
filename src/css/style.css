@@ -1,0 +1,42 @@
+body {
+  background-color: purple;
+  background-color: #8042f4; 
+}
+
+#containerDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+#legend {
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  top: 1.5em;
+}
+
+#svg {
+  position: relative;
+  top: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#toolTip {
+  position: absolute;
+  padding: 1em;
+  text-align: center;
+  background-color: white;
+  color: purple;
+  color: #8042f4;
+  border: 0.2em solid purple;
+  border: 0.2em solid #8042f4;
+}
+
+#footer {
+  position: relative;
+  top: 1em;
+}
