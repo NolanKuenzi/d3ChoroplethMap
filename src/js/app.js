@@ -52,7 +52,7 @@ let svg = d3.select("#svg")
             .attr("height", height)
             .attr("width", width);
 
-const margin1 = {top: -5, right: 0, bottom: 0, left: 25}; 
+const margin1 = {top: -5, right: 0, bottom: 0, left: 20}; 
 svg = svg.append("g")
                .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
@@ -125,10 +125,18 @@ d3.json(educationData).then(function(eduData) {
        .on("mouseleave", function() {
          toolTip
            .style("display", "none");
-       });
+       }); 
   }).catch(function(err1) {
        alert("Data failed to load, please try again.")
   });
 }).catch(function(err0) {
   alert("Data failed to load, please try again.")
 });
+/* For mobile devices */
+const clear = document.querySelector("body");
+  clear.addEventListener("touchstart", function(e) {
+    if (e.target.className.baseVal !== "county") {
+      toolTip
+        .style("display", "none");
+    }  
+  });
