@@ -131,7 +131,7 @@ d3.json(educationData).then(function(eduData) {
   });
 }).catch(function(err0) {
   alert("Data failed to load, please try again.")
-});
+}); 
 /* For mobile devices */
 const clear = document.querySelector("body");
   clear.addEventListener("touchstart", function(e) {
