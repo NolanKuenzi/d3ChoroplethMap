@@ -1,28 +1,28 @@
-const path = require("path");
+const path = require('path');
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 
 const paths = {
-  DOCS: path.resolve(__dirname, "docs"),
-  SRC: path.resolve(__dirname, "src"),
-  JS: path.resolve(__dirname, "src/js"),
+  DIST: path.resolve(__dirname, 'docs'),
+  SRC: path.resolve(__dirname, 'src'),
+  JS: path.resolve(__dirname, 'src/js'),
 };
 
 module.exports = {
-  entry: path.join(paths.JS, "app.js"),
+  entry: path.join(paths.JS, 'app.js'),
   output: {
-    path: paths.DOCS,
-    filename: "app.bundle.js"
+    path: paths.DIST,
+    filename: 'app.bundle.js',
   },
-  
+ 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, "index.html"),
+      template: path.join(paths.SRC, 'index.html'),
     }),
-    new ExtractTextPlugin("style.bundle.css"),
+    new MiniCssExtractPlugin('style.bundle.css'), 
   ],
-  
+
   module: {
     rules: [
       {
@@ -32,17 +32,16 @@ module.exports = {
           'babel-loader',
         ],
       },
-      
+
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          use: 'css-loader',
-        }),
-      }
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
     ],
   },
   
   resolve: {
-    extensions: [".js"]
+    extensions: ['.js'],
   },
 };
+
